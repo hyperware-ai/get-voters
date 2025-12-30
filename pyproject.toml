@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "get-voters"
+version = "0.1.0"
+description = "Fetch votes with reasons for DAO proposals using OpenZeppelin Governor interface"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "web3>=6.0.0",
+]
+
+[project.scripts]
+get-voters = "get_voters:main"
