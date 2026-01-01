@@ -248,6 +248,24 @@ def main():
     print("Fetching votes with reasons...", file=sys.stderr)
     votes = get_votes_with_reason(w3, args.dao, args.proposal_id, start_block, end_block)
     print(f"Found {len(votes)} votes with reasons", file=sys.stderr)
+    zero_weight_votes = [vote for vote in votes if vote.get("weight") == 0]
+    if zero_weight_votes:
+        print(
+            f"WARNING: {len(zero_weight_votes)} vote(s) have weight 0",
+            file=sys.stderr,
+        )
+    reason_counts = {}
+    for vote in votes:
+        reason = vote.get("reason")
+        if reason is None:
+            continue
+        reason_counts[reason] = reason_counts.get(reason, 0) + 1
+    duplicate_reasons = [reason for reason, count in reason_counts.items() if count > 1]
+    if duplicate_reasons:
+        print(
+            f"WARNING: {len(duplicate_reasons)} duplicate reason(s) detected",
+            file=sys.stderr,
+        )
 
     # Output CSV
     if args.output == "-":

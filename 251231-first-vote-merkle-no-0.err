@@ -1,0 +1,1 @@
+python3 generate_merkletree_root_and_proofs.py --csv-file ~/git/get-voters/251231-first-vote-pre-merkle-format.csv --output json --output-file ~/git/get-voters/251231-first-vote-merkle-no-0.json

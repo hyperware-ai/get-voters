@@ -13,4 +13,10 @@ dependencies = [
 ]
 
 [project.scripts]
-get-voters = "get_voters:main"
+get-voters = "get_voters.get_voters:main"
+parse-voters = "get_voters.parse_voters:main"
+make-bulk-chat-prompt = "get_voters.make_bulk_chat_prompt:main"
+get-active-lock-delegates = "get_voters.get_active_lock_delegates:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/get_voters"]
